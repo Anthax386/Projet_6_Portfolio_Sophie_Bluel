@@ -1,0 +1,35 @@
+.btn {
+	padding: 9px 15px;
+	text-align: center;
+	font-family: Syne;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	cursor: pointer;
+	border-radius: 60px;
+	border: none;
+}
+.whiteBtn {
+	background: none;	
+	border: 1px solid #1D6154;
+	color: #1D6154;
+}
+
+.greenBtn {
+	background: #1D6154;
+	color: #ffffff;
+	border: none;
+}
+
+.editBtn {
+	background: none;
+    border: none;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 29%;
+    top: 10px;
+	cursor: pointer;
+}
