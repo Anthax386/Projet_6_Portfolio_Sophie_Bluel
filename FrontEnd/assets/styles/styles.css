@@ -203,16 +203,20 @@ table {
   background: #fff;
   position: absolute;
   z-index: 1;
-  top: 25%;
-  left: 33%;
-  width: 30%;
-  height: fit-content;
-  border-radius: 30px;
-  padding: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 430px;
+  height: 570px;
+  border-radius: 10px;
+  padding: 50px 100px;
   display: flex;
   gap: 30px;
   flex-direction: column;
   align-items: center;
+}
+.editSection h2 {
+  font-family: Work Sans;
 }
 .editSection div {
   display: flex;
@@ -241,8 +245,8 @@ table {
 }
 .editSection .closeBtn {
   position: absolute;
-  top: 50px;
-  right: 50px;
+  top: 25px;
+  right: 25px;
   border: none;
   background: none;
   cursor: pointer;
@@ -256,6 +260,64 @@ table {
   left: 0;
   background: black;
   opacity: 0.5;
+}
+
+.newWorkForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+.newWorkForm .backArrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}
+.newWorkForm .backArrow i {
+  font-size: 1.5em;
+}
+.newWorkForm .img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #E8F1F6;
+  color: #B9C5CC;
+  padding: 20px;
+  font-family: Work Sans;
+}
+.newWorkForm .img i {
+  font-size: 5em;
+}
+.newWorkForm .img label {
+  background: #B9C5CC;
+  color: #306685;
+}
+.newWorkForm .img input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.newWorkForm .img p {
+  color: #444;
+}
+.newWorkForm .input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.newWorkForm .input input, .newWorkForm .input select, .newWorkForm .input option {
+  font-size: 20px;
+  height: 50px;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
 }
 
 /****************** Layout ******************/
