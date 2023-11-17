@@ -59,11 +59,13 @@ table {
 @import 'components/loginForm.scss';
 @import 'components/editMenu.scss';
 @import 'components/newWorkForm.scss';
+@import 'components/switch.scss';
 
 /****************** Layout ******************/
 @import 'layout/header.scss';
 @import 'layout/body.scss';
 @import 'layout/footer.scss';
+
 /****************** Pages ******************/
 @import 'pages/home.scss';
 
