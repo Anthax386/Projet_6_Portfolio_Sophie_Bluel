@@ -6,7 +6,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 430px;
-    height: 570px;
+    height: fit-content;
     border-radius: 10px;
     padding: 50px 100px;
     display: flex;
@@ -16,11 +16,13 @@
     h2 {
         font-family: Work Sans;
     }
-    div {
+    .editSectionGalerie {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 10px;       
+        gap: 10px;
+        padding-bottom: 50px;
+        border-bottom: 1px solid black;
         .editGallery{
             width: 23%;
             position: relative;
