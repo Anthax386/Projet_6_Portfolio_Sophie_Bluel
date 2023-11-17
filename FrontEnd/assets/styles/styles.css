@@ -168,6 +168,12 @@ table {
 .loginForm .loginInput input {
   height: 50px;
 }
+.loginForm .stayLogged {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
 .loginForm .btn {
   width: 180px;
 }
@@ -207,7 +213,7 @@ table {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 430px;
-  height: 570px;
+  height: fit-content;
   border-radius: 10px;
   padding: 50px 100px;
   display: flex;
@@ -218,20 +224,22 @@ table {
 .editSection h2 {
   font-family: Work Sans;
 }
-.editSection div {
+.editSection .editSectionGalerie {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid black;
 }
-.editSection div .editGallery {
+.editSection .editSectionGalerie .editGallery {
   width: 23%;
   position: relative;
 }
-.editSection div .editGallery img {
+.editSection .editSectionGalerie .editGallery img {
   width: 100%;
 }
-.editSection div .editGallery .deletBtn {
+.editSection .editSectionGalerie .editGallery .deletBtn {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -251,6 +259,17 @@ table {
   background: none;
   cursor: pointer;
 }
+.editSection .backArrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}
+.editSection .backArrow i {
+  font-size: 1.5em;
+}
 
 .blackback {
   width: 100%;
@@ -263,21 +282,13 @@ table {
 }
 
 .newWorkForm {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: 100%;
-}
-.newWorkForm .backArrow {
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  top: 25px;
-  left: 25px;
-}
-.newWorkForm .backArrow i {
-  font-size: 1.5em;
+  padding-bottom: 50px;
+  border-bottom: 1px solid black;
 }
 .newWorkForm .img {
   display: flex;
@@ -287,6 +298,8 @@ table {
   color: #B9C5CC;
   padding: 20px;
   font-family: Work Sans;
+  justify-content: space-around;
+  height: 150px;
 }
 .newWorkForm .img i {
   font-size: 5em;
@@ -306,6 +319,9 @@ table {
 .newWorkForm .img p {
   color: #444;
 }
+.newWorkForm .img .previewImage {
+  height: 190px;
+}
 .newWorkForm .input {
   display: flex;
   flex-direction: column;
@@ -318,6 +334,50 @@ table {
   outline: 0;
   background-color: transparent;
   box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+.switch {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.switch input {
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: 0;
+  height: 0;
+}
+.switch input:checked + span {
+  background-color: #1d6154;
+}
+.switch input:checked + span::before {
+  left: 24px;
+}
+.switch input + span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(29, 97, 84, 0.3);
+  border-radius: 20px;
+}
+.switch input + span::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: all 0.5s;
 }
 
 /****************** Layout ******************/
@@ -433,6 +493,11 @@ h2 {
 }
 .gallery img {
   width: 100%;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
 }
 
 /****************** Theme ******************/

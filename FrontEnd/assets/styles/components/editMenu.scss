@@ -51,6 +51,17 @@
         background: none;
         cursor: pointer;
     }
+    .backArrow {
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        i {
+            font-size: 1.5em;
+        }
+    }
 }
 .blackback {
     width: 100%;
