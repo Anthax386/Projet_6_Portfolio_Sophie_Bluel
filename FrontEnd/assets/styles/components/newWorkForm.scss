@@ -1,19 +1,11 @@
 .newWorkForm {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 30px;
     width: 100%;
-    .backArrow {
-        background: none;
-        border: none;
-        cursor: pointer;
-        position: absolute;
-        top: 25px;
-        left: 25px;
-        i {
-            font-size: 1.5em;
-        }
-    }
+    padding-bottom: 50px;
+    border-bottom: 1px solid black;
     .img {
         display: flex;
         flex-direction: column;
@@ -22,6 +14,8 @@
         color: #B9C5CC;
         padding: 20px;
         font-family: Work Sans;
+        justify-content: space-around;
+        height: 150px;
         i {
             font-size: 5em;
         }
@@ -39,6 +33,9 @@
         }
         p {
             color: #444;
+        }
+        .previewImage {
+            height: 190px;
         }
     }
     .input {
