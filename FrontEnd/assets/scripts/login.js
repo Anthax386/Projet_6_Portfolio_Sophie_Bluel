@@ -5,7 +5,7 @@ function LogIn() {
         event.preventDefault();
 
         // Récupération des input
-        const $stayLogged = event.target.querySelector('[name=stayLogged]').value;
+        const isStayLoggedChecked = document.querySelector('[name=stayLogged]').checked;
         const loginValue = {
             email: event.target.querySelector('[name=e-mail]').value,
             password: event.target.querySelector('[name= password]').value,
@@ -39,7 +39,7 @@ function LogIn() {
         }
 
         if (user.userId) {   
-            if($stayLogged === true) {
+            if(isStayLoggedChecked === true) {
                 stayLogged();
             } else {
                 dontStayLogged();
