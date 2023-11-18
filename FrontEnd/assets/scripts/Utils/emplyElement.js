@@ -3,3 +3,4 @@ export function empty(element) {
        element.firstElementChild.remove();
     };
 };
+

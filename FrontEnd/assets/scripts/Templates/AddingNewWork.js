@@ -30,6 +30,7 @@ export function createNewWorkForm(){
                     <option value="3">Hôtel et Réstaurant</option>
                 </select>
             </div>
+            <p class='hidden errorMsg'>Attention, il manque des informations !</p>
             <input type="submit" class="btn greyBtn" value="Valider" id="valider">
         `;
         $workForm.classList.add('newWorkForm');
@@ -62,10 +63,18 @@ export function createNewWorkForm(){
             });
         });
         
-        imageInput.addEventListener('change', async function(){
+        function getImgFile(){
             const imageFile = document.querySelector('#image').files[0];
+            return imageFile;
+        }
+
+        imageInput.addEventListener('change', async function(){
+            const imageFile = await getImgFile();
+
             const $imgForm = document.querySelector('#img');
-            empty($imgForm);
+                for (let i=0; i < $imgForm.children.length; i++) {
+                    $imgForm.children[i].classList.add('hidden')
+                };
 
             const $imgPreview = document.createElement('img');
                 $imgPreview.classList.add('previewImage');
@@ -82,21 +91,29 @@ export function createNewWorkForm(){
         
         $workForm.addEventListener("submit", async function(event) {
             event.preventDefault();
-            
+
             const token = window.localStorage.getItem('token');
-            const image = document.querySelector('#image').files[0];
+            const image = await getImgFile();
             const title = document.querySelector('#title').value;
             const category = document.querySelector('#category').value;
 
-            const formData = new FormData();
-            formData.append('image', image);
-            formData.append('title', title);
-            formData.append('category', category);
+            console.log(image, title, category)
+            if (image &&  title && category) {
+                const formData = new FormData();
+                formData.append('image', image);
+                formData.append('title', title);
+                formData.append('category', category);
 
-            fetch('http://localhost:5678/api/works', {
-                method:"POST",
-                headers: {"Authorization": "Bearer " + token },
-                body: formData,
-            });
+                fetch('http://localhost:5678/api/works', {
+                    method:"POST",
+                    headers: {"Authorization": "Bearer " + token },
+                    body: formData,
+                });
+                
+            } else {
+                const $errorMsg = document.querySelector('.errorMsg');
+                    $errorMsg.classList.remove('hidden')
+            }
+            
         });
 };
