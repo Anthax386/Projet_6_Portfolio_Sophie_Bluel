@@ -11,39 +11,25 @@ function LogIn() {
             password: event.target.querySelector('[name= password]').value,
         }
 
-        async function getToken(){
-            const chargeUtile = JSON.stringify(loginValue);
+        const chargeUtile = JSON.stringify(loginValue);
 
-            const reponse= await fetch('http://localhost:5678/api/users/login', {
-                method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: chargeUtile,
-            });
-            const user = await reponse.json();
-            return user;
-        };
-        getToken();
-        const user = await getToken();
+        const reponse= await fetch('http://localhost:5678/api/users/login', {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: chargeUtile,
+        });
+        const user = await reponse.json();
 
-        async function stayLogged(){
-            window.localStorage.setItem("userId", user.userId);
-            window.localStorage.setItem('token', user.token);
-            location.href='./index.html';
-        }
-
-        async function dontStayLogged(){
-            window.sessionStorage.setItem("userId", user.userId);
-            window.sessionStorage.setItem('token', user.token);
-
-            location.href='./index.html';
-        }
 
         if (user.userId) {   
             if(isStayLoggedChecked === true) {
-                stayLogged();
+                window.localStorage.setItem("userId", user.userId);
+                window.localStorage.setItem('token', user.token);
             } else {
-                dontStayLogged();
+                window.sessionStorage.setItem("userId", user.userId);
+                window.sessionStorage.setItem('token', user.token);
             }
+            location.href='./index.html';
         } else {
             const loginError = document.querySelector('.loginError');
                 loginError.classList.remove('hidden');
