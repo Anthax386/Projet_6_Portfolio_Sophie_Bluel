@@ -1,5 +1,28 @@
 header {
+	.normal-header{
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		margin: 50px 0;
+	}
+	.edit-mode-normal-header{
+		margin-top: 59px;
+	}
+	.edit-mode {
+		position: absolute;
+		top: 0;
+		width: 500%;
+		height: 59px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: black;
+		p {
+			color: white;
+		}
+	}
+	position: relative;
 	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
+	flex-direction: column;
+	align-items: center;
 }

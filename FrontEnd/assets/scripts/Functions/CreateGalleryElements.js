@@ -3,9 +3,8 @@ import {empty} from "../Utils/emplyElement.js"
 
 const $gallery = document.getElementById('gallery');
 
-const works = await getWorksData();
-
-export function createGaleryElement(filter){
+export async function createGaleryElement(){
+    const works = await getWorksData();
     works.forEach(element => {
         const $figure = document.createElement('figure');
         $figure.innerHTML =  `
@@ -14,9 +13,11 @@ export function createGaleryElement(filter){
         `;
         $gallery.appendChild($figure);
     })
+    console.log('coucou')
 };
 
 export async function getFilteredWorks(Category) {
+    const works = await getWorksData();
     const result = works.filter((work) =>work.categoryId === Category);
 
     empty($gallery);

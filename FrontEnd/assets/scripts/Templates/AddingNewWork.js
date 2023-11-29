@@ -1,5 +1,8 @@
 import {empty} from '../Utils/emplyElement.js'
 import {createEditSection} from "../Templates/EditSection.js"
+import { createGaleryElement } from '../Functions/CreateGalleryElements.js';
+
+const $gallery = document.querySelector('#gallery');
 
 export function createNewWorkForm(){
     const $addPictureBtn = document.querySelector("#addPictureBtn");
@@ -12,10 +15,11 @@ export function createNewWorkForm(){
             <div class="img" id="img">
                 <i class="fa-regular fa-image" id=""></i>
                 <input type="file" id="image" name="image"
-                    accept="image/png, image/jpeg, image/jpg, image/wepb"                                    
+                    accept="image/png, image/jpeg, image/jpg, image/wepb, image/jpeg"                                    
                     max-size="4096">
                 <label for="image" class="btn">+ Ajouter une photo</label>
                 <p>jpg, png : 4mo max</p>
+                <p class='hidden errorMsg' id='invalidFile'>Fichier invalide !</p>
             </div>
             <div class="input">
                 <label for="title">Titre</label>
@@ -30,7 +34,7 @@ export function createNewWorkForm(){
                     <option value="3">Hôtel et Réstaurant</option>
                 </select>
             </div>
-            <p class='hidden errorMsg'>Attention, il manque des informations !</p>
+            <p class='hidden errorMsg' id='errorMsg'>Attention, il manque des informations !</p>
             <input type="submit" class="btn greyBtn" value="Valider" id="valider">
         `;
         $workForm.classList.add('newWorkForm');
@@ -70,23 +74,28 @@ export function createNewWorkForm(){
 
         imageInput.addEventListener('change', async function(){
             const imageFile = await getImgFile();
-
-            const $imgForm = document.querySelector('#img');
+            console.log(imageFile.type)
+            if (imageFile.type === 'image/png' || imageFile.type === 'image/jpg' || imageFile.type === 'image/wepb' || imageFile.type === 'image/jpeg' && imageFile.size <= 4000000){
+                const $imgForm = document.querySelector('#img');
                 for (let i=0; i < $imgForm.children.length; i++) {
                     $imgForm.children[i].classList.add('hidden')
                 };
 
-            const $imgPreview = document.createElement('img');
-                $imgPreview.classList.add('previewImage');
-            $imgForm.appendChild($imgPreview);
+                const $imgPreview = document.createElement('img');
+                    $imgPreview.classList.add('previewImage');
+                $imgForm.appendChild($imgPreview);
 
-            const reader = new FileReader();
+                const reader = new FileReader();
 
-            reader.onload = function(e) {
-                $imgPreview.src = e.target.result;
+                reader.onload = function(e) {
+                    $imgPreview.src = e.target.result;
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                const $invalidFile = document.querySelector('#invalidFile');
+                    $invalidFile.classList.remove('hidden');
             };
-            reader.readAsDataURL(imageFile);
-        })
+        });
 
         
         $workForm.addEventListener("submit", async function(event) {
@@ -97,23 +106,24 @@ export function createNewWorkForm(){
             const title = document.querySelector('#title').value;
             const category = document.querySelector('#category').value;
 
-            console.log(image, title, category)
             if (image &&  title && category) {
                 const formData = new FormData();
                 formData.append('image', image);
                 formData.append('title', title);
                 formData.append('category', category);
 
-                fetch('http://localhost:5678/api/works', {
+                await fetch('http://localhost:5678/api/works', {
                     method:"POST",
                     headers: {"Authorization": "Bearer " + token },
                     body: formData,
                 });
-                
+                $workForm.remove();
+                createEditSection();
+                empty($gallery);
+                createGaleryElement();
             } else {
-                const $errorMsg = document.querySelector('.errorMsg');
+                const $errorMsg = document.querySelector('#errorMsg');
                     $errorMsg.classList.remove('hidden')
-            }
-            
+            };            
         });
 };

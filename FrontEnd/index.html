@@ -12,16 +12,18 @@
 	<script src="https://kit.fontawesome.com/6f97fd7e40.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-	<nav>
-		<ul>
-			<li><a href="#portfolio">projets</a></li>
-			<li><a href="#contact">contact</a></li>
-			<li><p href="./login.html" id="login"></p></li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
+<header id="header">
+	<div class="normal-header" id="normal-header">
+		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+		<nav>
+			<ul>
+				<li><a href="#portfolio">projets</a></li>
+				<li><a href="#contact">contact</a></li>
+				<li><p href="./login.html" id="login"></p></li>
+				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+			</ul>
+		</nav>
+	</div>
 </header>
 <main id="main">
 	<section id="introduction">
@@ -37,7 +39,7 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
-		<article class="filtres">
+		<article class="filtres" id="filters">
 			<button id="tous" class="btn whiteBtn greenBtn">Tous</button>
 			<button id="objects" class="btn whiteBtn">Objets</button>
 			<button id="appartements" class="btn whiteBtn">Appartements</button>

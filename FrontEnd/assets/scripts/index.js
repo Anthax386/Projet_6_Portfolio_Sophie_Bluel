@@ -3,8 +3,11 @@ import {getWorksData} from "./Data/works.js"
 import {isLogged} from "./logged.js"
 import {empty} from "./Utils/emplyElement.js"
 
-const userId = window.localStorage.getItem("userId");
-const token = window.localStorage.getItem('token');
+const userIdLocal = window.localStorage.getItem("userId");
+const tokenLocal = window.localStorage.getItem('token');
+
+const userIdSession = window.sessionStorage.getItem('userId');
+const tokenSession = window.sessionStorage.getItem('token');
 
 const $tous = document.getElementById('tous');
 const $objets = document.getElementById('objects');
@@ -16,7 +19,7 @@ const works = await getWorksData();
 
 function createAllWorks() {
     empty(gallery);
-    createGaleryElement(works);
+    createGaleryElement();
 };
 
 function changeActiveBtn() {
@@ -37,12 +40,18 @@ for (const [index, filter] of filters.entries()) {
     });
 };
 
-if (userId == 1 && token){
-    $loginBtn.innerText = 'logout';
-    $loginBtn.addEventListener('click', function(){
-        localStorage.clear();
-        location.reload();
-    });
+let userId = null;
+let token = null;
+
+if (userIdLocal && tokenLocal) {
+    userId = userIdLocal;
+    token = tokenLocal;
+} else if(userIdSession && tokenSession){
+    userId = userIdSession;
+    token = tokenSession;
+}
+
+if (userId != null && token != null){
     isLogged();
 } else {
     $loginBtn.innerText = "login";
